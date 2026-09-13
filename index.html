@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Psicologia no Sofá</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Palestras gratuitas, online e ao vivo com pesquisadores de referência em psicologia e análise do comportamento — em português, direto da fonte. Gravações abertas e certificados.">
+<link rel="icon" href="assets/pns-favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/pns-icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/pns-apple-touch-icon.png">
+<link rel="manifest" href="assets/pns.webmanifest">
+<meta name="theme-color" content="#2C4A54">
+<meta name="application-name" content="Psicologia no Sofá">
+<meta name="apple-mobile-web-app-title" content="Sofá">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Psicologia no Sofá">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Psicologia no Sofá">
+<meta property="og:description" content="Palestras gratuitas, online e ao vivo com pesquisadores de referência em psicologia e análise do comportamento — em português, direto da fonte. Gravações abertas e certificados.">
+<meta property="og:url" content="https://psicologianosofa.com/">
+<link rel="canonical" href="https://psicologianosofa.com/">
+<meta property="og:image" content="https://psicologianosofa.com/assets/pns-og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Psicologia no Sofá"><meta name="twitter:description" content="Palestras gratuitas, online e ao vivo com pesquisadores de referência em psicologia e análise do comportamento — em português, direto da fonte. Gravações abertas e certificados."><meta name="twitter:image" content="https://psicologianosofa.com/assets/pns-og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/sofa.css?v=20260914a">
+<script>
+  (function () { try { var q = new URLSearchParams(location.search).get("lang"), s = localStorage.getItem("pns-lang");
+    var l = (q === "en" || q === "pt") ? q : (s === "en" ? "en" : "pt"); document.documentElement.setAttribute("data-lang", l); document.documentElement.lang = l === "en" ? "en" : "pt-BR"; } catch (e) {} })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="assets/pns-config.js?v=20260914a"></script>
+<script src="assets/pns-app.js?v=20260914a"></script>
+
+</head>
+<body>
+<a class="skip-link" href="#main"><span class="pt">Pular para o conteúdo</span><span class="en">Skip to content</span></a>
+<div class="announce"><div class="wrap"><span><span class="pt"><b>6 de outubro, 19h (Brasília)</b> — Conversa ao vivo com Prof. Steven C. Hayes, criador da ACT.</span><span class="en"><b>October 6, 7 pm (Brasília)</b> — Live conversation with Prof. Steven C. Hayes, creator of ACT.</span></span> <a href="hayes.html"><span class="pt">Saiba mais e inscreva-se →</span><span class="en">Details and registration →</span></a></div></div>
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="Psicologia no Sofá — início"><svg viewBox="0 0 200 130" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M28,92 L28,64 C28,54 34,48 44,48 C50,48 54,51 54,56 C54,44 62,38 74,38 L126,38 C138,38 146,44 146,56 C146,51 150,48 156,48 C166,48 172,54 172,64 L172,92 Z"/><line x1="54" y1="56" x2="54" y2="76"/><line x1="146" y1="56" x2="146" y2="76"/><line x1="54" y1="76" x2="146" y2="76"/><line x1="100" y1="40" x2="100" y2="76"/><path d="M46,92 L40,110"/><path d="M154,92 L160,110"/><path d="M74,92 L71,108"/><path d="M126,92 L129,108"/></g><rect x="60" y="52" width="28" height="28" rx="6" transform="rotate(-12 74 66)" fill="#E8846A" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/></svg><span>Psicologia<br>no <b>Sofá</b></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Psicologia no Sofá"><a href="index.html" aria-current="page"><span class="pt">Início</span><span class="en">Home</span></a><a href="conversas.html"><span class="pt">Conversas</span><span class="en">Conversations</span></a><a href="cursos.html"><span class="pt">Cursos</span><span class="en">Courses</span></a><a href="imersoes.html"><span class="pt">Imersões</span><span class="en">Immersions</span></a><a href="certificado.html"><span class="pt">Certificados</span><span class="en">Certificates</span></a><a href="sobre.html"><span class="pt">Sobre</span><span class="en">About</span></a></nav>
+    <div class="nav-right">
+      <div class="nav-account" id="nav-account"><a class="btn btn-primary btn-sm" href="entrar.html"><span class="pt">Entrar</span><span class="en">Sign in</span></a></div>
+      <div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-set-lang="pt">PT</button><button type="button" data-set-lang="en">EN</button></div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <p class="eyebrow">Psicologia no Sofá</p>
+    <h1 class="h-xl"><span class="pt">Psicologia, direto da fonte.</span><span class="en">Psychology, straight from the source.</span></h1>
+    <p class="lead pt">Aprenda com quem pesquisa, ensina e transforma a Psicologia. Conversas gratuitas, cursos e experiências de formação com pesquisadores e profissionais de referência no Brasil e no mundo.</p>
+    <p class="lead en">Learn from the people who research, teach and transform Psychology. Free conversations, courses and learning experiences with leading researchers and practitioners in Brazil and abroad.</p>
+    <div class="actions"><a class="btn btn-primary" href="conversas.html"><span class="pt">Explorar conteúdos</span><span class="en">Explore content</span></a><a class="btn btn-secondary" href="entrar.html?modo=criar"><span class="pt">Criar conta grátis</span><span class="en">Create a free account</span></a></div>
+    <div class="trust"><span><span class="pt">Conversas gratuitas</span><span class="en">Free conversations</span></span><span><span class="pt">Certificados verificáveis</span><span class="en">Verifiable certificates</span></span><span><span class="pt">Desde 2020</span><span class="en">Since 2020</span></span></div>
+  </div>
+  <div class="hero-visual">
+    <div class="strip" id="hero-strip" aria-label="<span class="pt">Conversas em destaque</span><span class="en">Featured conversations</span>">
+      <a class="strip-card" href="hayes.html"><div class="media"><div class="mono"><span>SH</span></div></div><div class="cap"><b>Steven C. Hayes</b><span>Ao vivo · 6 de outubro</span></div></a>
+      <a class="strip-card" href="conversa.html?id=catania-2020-1"><div class="media"><img src="https://i.ytimg.com/vi/vKcA-AX3qW4/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></div><div class="cap"><b>A. Charles Catania</b><span>Evolution of a Science</span></div></a>
+      <a class="strip-card" href="conversa.html?id=dunker-2020"><div class="media"><img class="portrait" src="assets/speakers/dunker.png" alt="" loading="lazy" width="400" height="400"></div><div class="cap"><b>Christian Dunker</b><span>Atendimento online</span></div></a>
+      <a class="strip-card" href="conversa.html?id=baum-2020"><div class="media"><img class="portrait" src="assets/speakers/baum.png" alt="" loading="lazy" width="400" height="400"></div><div class="cap"><b>William M. Baum</b><span>Three laws of behavior</span></div></a>
+      <a class="strip-card" href="conversa.html?id=hubner-2020"><div class="media"><img src="https://i.ytimg.com/vi/aJ18SWLTUpg/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></div><div class="cap"><b>Martha Hübner</b><span>Intervenções para a COVID-19</span></div></a>
+      <a class="strip-card" href="conversa.html?id=higbee-2020"><div class="media"><img class="portrait" src="assets/speakers/higbee.png" alt="" loading="lazy" width="400" height="400"></div><div class="cap"><b>Thomas Higbee</b><span>Rotina de atividades</span></div></a>
+      <a class="strip-card" href="conversa.html?id=moraes-2020"><div class="media"><img src="https://i.ytimg.com/vi/fv11gwuqZI8/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></div><div class="cap"><b>Rui de Moraes Jr.</b><span>Raça e status social</span></div></a>
+      <a class="strip-card" href="conversa.html?id=gusso-2020"><div class="media"><img class="portrait" src="assets/speakers/gusso.png" alt="" loading="lazy" width="400" height="400"></div><div class="cap"><b>Helder Gusso</b><span>Ensino superior na pandemia</span></div></a>
+      <a class="strip-card" href="conversa.html?id=castro-2020"><div class="media"><img src="https://i.ytimg.com/vi/H3n9yjmGZUo/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></div><div class="cap"><b>Jorge Oliveira-Castro</b><span>Comportamento do consumidor</span></div></a>
+    </div>
+    <div class="strip-nav"><button type="button" class="strip-btn" data-dir="-1" aria-label="Anterior">‹</button><button type="button" class="strip-btn" data-dir="1" aria-label="Próximo">›</button></div>
+  </div>
+</div></section>
+
+<section class="proof"><div class="wrap proof-grid">
+  <div class="proof-item"><b>4.000+</b><span><span class="pt">participantes desde 2020</span><span class="en">participants since 2020</span></span></div>
+  <div class="proof-item"><b>23h</b><span><span class="pt">de atividade gratuita, com certificado</span><span class="en">of free certified activity</span></span></div>
+  <div class="proof-item"><b>2020</b><span><span class="pt">ano de fundação, no auge da pandemia</span><span class="en">founded, at the height of the pandemic</span></span></div>
+  <div class="proof-item"><b><span class="pt">Grátis</span><span class="en">Free</span></b><span><span class="pt">todas as Conversas, para sempre</span><span class="en">every Conversation, always</span></span></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><p class="eyebrow"><span class="pt">Convidados</span><span class="en">Speakers</span></p><h2 class="h-l"><span class="pt">Quem já sentou no Sofá</span><span class="en">Who has sat on the Sofá</span></h2>
+    <p class="lead pt">Pesquisadores e clínicos que normalmente só se encontram em artigos e congressos — em conversa aberta, em português.</p>
+    <p class="lead en">Researchers and clinicians usually found only in journals and conferences — in open conversation, in Portuguese.</p></div>
+  <div class="speakers">
+    <a class="speaker featured" href="hayes.html"><span class="tag tag-coral"><span class="pt">Ao vivo · 6 out</span><span class="en">Live · Oct 6</span></span><div class="portrait"><span class="initials">SH</span></div><div class="body"><h3>Steven C. Hayes</h3><p class="pt">Psicólogo clínico, criador da Terapia de Aceitação e Compromisso (ACT)</p><p class="en">Clinical psychologist, originator of Acceptance and Commitment Therapy (ACT)</p></div></a>
+    <a class="speaker" href="conversa.html?id=catania-2020-1"><div class="portrait"><span class="initials">CC</span></div><div class="body"><h3>A. Charles Catania</h3><p class="pt">Cientista do comportamento e autor</p><p class="en">Behavior scientist and author</p></div></a>
+    <a class="speaker" href="conversa.html?id=baum-2020"><div class="portrait"><img src="assets/speakers/baum.png" alt="" loading="lazy" width="400" height="400"></div><div class="body"><h3>William M. Baum</h3><p class="pt">Cientista do comportamento e autor</p><p class="en">Behavior scientist and author</p></div></a>
+    <a class="speaker" href="conversa.html?id=hubner-2020"><div class="portrait"><span class="initials">MH</span></div><div class="body"><h3>Martha Hübner</h3><p class="pt">Análise do comportamento aplicada à saúde</p><p class="en">Behavior analysis applied to health</p></div></a>
+    <a class="speaker" href="conversa.html?id=dunker-2020"><div class="portrait"><img src="assets/speakers/dunker.png" alt="" loading="lazy" width="400" height="400"></div><div class="body"><h3>Christian Dunker</h3><p class="pt">Psicanalista e professor</p><p class="en">Psychoanalyst and professor</p></div></a>
+    <a class="speaker" href="conversa.html?id=higbee-2020"><div class="portrait"><img src="assets/speakers/higbee.png" alt="" loading="lazy" width="400" height="400"></div><div class="body"><h3>Thomas Higbee</h3><p class="pt">ABA e autismo</p><p class="en">ABA and autism</p></div></a>
+    <a class="speaker" href="conversa.html?id=gusso-2020"><div class="portrait"><img src="assets/speakers/gusso.png" alt="" loading="lazy" width="400" height="400"></div><div class="body"><h3>Helder Gusso</h3><p class="pt">Análise do comportamento e educação</p><p class="en">Behavior analysis and education</p></div></a>
+  </div>
+  <p class="small" style="margin-top:16px"><a class="more" href="conversas.html"><span class="pt">Conheça todos os convidados →</span><span class="en">Meet all the speakers →</span></a></p>
+</div></section>
+
+<section class="section section-mint" id="conversas"><div class="wrap">
+  <div class="section-head"><div class="row"><div><p class="eyebrow coral">Conversas no Sofá</p><h2 class="h-l"><span class="pt">Grandes ideias devem ser acessíveis.</span><span class="en">Great ideas should be accessible.</span></h2></div><a class="more" href="conversas.html"><span class="pt">Ver todas as Conversas →</span><span class="en">See all Conversations →</span></a></div>
+    <p class="lead pt">Crie uma conta gratuita, assista no seu ritmo, retome de onde parou e, ao concluir pelo menos 90% de uma conversa elegível, desbloqueie o certificado.</p>
+    <p class="lead en">Create a free account, watch at your own pace, resume where you left off and, after completing at least 90% of an eligible conversation, unlock the certificate.</p></div>
+  <div class="cards">
+    <article class="card-conv">
+  <a class="media" href="conversa.html?id=catania-2020-1"><img src="https://i.ytimg.com/vi/vKcA-AX3qW4/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="tag"><span class="pt">Gratuito</span><span class="en">Free</span></span></a>
+  <div class="body"><p class="who">A. Charles Catania</p><h3><a href="conversa.html?id=catania-2020-1">Evolution of a Science — master class em 3 partes</a></h3><p class="desc pt">A história da Análise do Comportamento no século XX, com aplicações ao autismo. Em inglês, com tradução.</p><p class="desc en">The history of behavior analysis in the 20th century, with applications to autism. In English, with interpretation.</p>
+    <div class="meta"><span>≈ 6h40 · <span class="pt">sob demanda</span><span class="en">on demand</span></span><span class="has-cert">✓ <span class="pt">Certificado</span><span class="en">Certificate</span></span></div></div>
+  <div class="foot"><a class="btn btn-secondary btn-sm" href="conversa.html?id=catania-2020-1"><span class="pt">Assistir gratuitamente</span><span class="en">Watch for free</span></a></div>
+</article>
+    <article class="card-conv">
+  <a class="media" href="conversa.html?id=dunker-2020"><img src="https://i.ytimg.com/vi/xLBR6By3Nxs/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="tag"><span class="pt">Gratuito</span><span class="en">Free</span></span></a>
+  <div class="body"><p class="who">Christian Dunker</p><h3><a href="conversa.html?id=dunker-2020">Os ruídos e o tempo no atendimento online</a></h3><p class="desc pt">O que muda na escuta clínica quando a sessão acontece pela tela.</p><p class="desc en">What changes in clinical listening when the session happens on a screen.</p>
+    <div class="meta"><span>1h22 · <span class="pt">sob demanda</span><span class="en">on demand</span></span><span class="has-cert">✓ <span class="pt">Certificado</span><span class="en">Certificate</span></span></div></div>
+  <div class="foot"><a class="btn btn-secondary btn-sm" href="conversa.html?id=dunker-2020"><span class="pt">Assistir gratuitamente</span><span class="en">Watch for free</span></a></div>
+</article>
+    <article class="card-conv">
+  <a class="media" href="conversa.html?id=hubner-2020"><img src="https://i.ytimg.com/vi/aJ18SWLTUpg/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="tag"><span class="pt">Gratuito</span><span class="en">Free</span></span></a>
+  <div class="body"><p class="who">Martha Hübner</p><h3><a href="conversa.html?id=hubner-2020">Intervenções comportamentais para a COVID-19</a></h3><p class="desc pt">Como a análise do comportamento respondeu a uma crise de saúde pública.</p><p class="desc en">How behavior analysis responded to a public-health crisis.</p>
+    <div class="meta"><span>1h08 · <span class="pt">sob demanda</span><span class="en">on demand</span></span><span class="has-cert">✓ <span class="pt">Certificado</span><span class="en">Certificate</span></span></div></div>
+  <div class="foot"><a class="btn btn-secondary btn-sm" href="conversa.html?id=hubner-2020"><span class="pt">Assistir gratuitamente</span><span class="en">Watch for free</span></a></div>
+</article>
+  </div>
+</div></section>
+
+<section class="section" id="crescendo"><div class="wrap">
+  <div class="reveal-head"><p class="eyebrow"><span class="pt">Lançamento · outubro de 2026</span><span class="en">Launch · October 2026</span></p><h2 class="h-l"><span class="pt">O Sofá está crescendo.</span><span class="en">The Sofá is growing.</span></h2>
+    <p class="lead pt" style="margin:14px auto 0">As Conversas continuam gratuitas. A plataforma cresce para que você também possa estudar de forma estruturada e participar de experiências de formação menores e mais profundas.</p>
+    <p class="lead en" style="margin:14px auto 0">The Conversations stay free. The platform is growing so you can also study in a structured way and take part in smaller, deeper learning experiences.</p></div>
+  <div class="doors">
+    <a class="door d1" href="conversas.html"><p class="k"><span class="pt">Gratuitas</span><span class="en">Free</span></p><h3>Conversas</h3><p class="verb"><span class="pt">Explorar</span><span class="en">Explore</span></p><p class="pt">Conversas sob demanda com pesquisadores e profissionais, com certificado ao concluir.</p><p class="en">On-demand conversations with researchers and practitioners, with a certificate on completion.</p><span class="go">→</span></a>
+    <a class="door d2" href="cursos.html"><p class="k"><span class="pt">Aprofundar</span><span class="en">Go deeper</span></p><h3>Cursos</h3><p class="verb"><span class="pt">Aprender</span><span class="en">Learn</span></p><p class="pt">Aprendizagem estruturada, com aulas, materiais, exercícios e um resultado claro.</p><p class="en">Structured learning with lessons, materials, exercises and a clear outcome.</p><span class="go">→</span></a>
+    <a class="door d3" href="imersoes.html"><p class="k"><span class="pt">Transformar</span><span class="en">Transform</span></p><h3>Imersões</h3><p class="verb"><span class="pt">Vivenciar</span><span class="en">Experience</span></p><p class="pt">Experiências intensivas em grupos pequenos, com prática, feedback e interação próxima.</p><p class="en">Small-group intensive experiences with practice, feedback and close interaction.</p><span class="go">→</span></a>
+  </div>
+</div></section>
+
+<section class="section section-sand" id="cursos"><div class="wrap split">
+  <div>
+    <p class="eyebrow coral">Cursos no Sofá</p>
+    <h2 class="h-l" style="margin-top:10px">Psicologia Baseada em Evidências</h2>
+    <p class="lead" style="margin-top:8px"><span class="pt">Como ler, avaliar e comunicar conhecimento psicológico.</span><span class="en">How to read, evaluate and communicate psychological knowledge.</span></p>
+    <div class="course-meta"><span class="tag"><span class="pt">Primeiro curso</span><span class="en">First course</span></span><span class="tag"><span class="pt">Aulas + materiais + exercícios</span><span class="en">Lessons + materials + exercises</span></span><span class="tag"><span class="pt">Certificado</span><span class="en">Certificate</span></span></div>
+    <p class="pt" style="color:var(--muted);max-width:52ch">Para estudantes e profissionais que querem sair da leitura passiva: entender como o conhecimento em Psicologia é produzido, julgar a qualidade de uma evidência e comunicá-la com clareza e honestidade.</p>
+    <p class="en" style="color:var(--muted);max-width:52ch">For students and practitioners who want to move beyond passive reading: understand how psychological knowledge is produced, judge the quality of evidence, and communicate it clearly and honestly.</p>
+    <p class="soon" style="margin-top:18px"><span class="pt">Mais informações em breve</span><span class="en">More information coming soon</span></p>
+    <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px"><a class="btn btn-primary" href="cursos.html"><span class="pt">Conhecer o curso</span><span class="en">About the course</span></a><a class="btn btn-secondary" href="cursos.html#avise-me"><span class="pt">Quero ser avisado</span><span class="en">Notify me</span></a></div>
+  </div>
+  <div class="visual"><div class="texture"></div><blockquote class="quote pt">Ler um artigo não é o mesmo que saber o que ele sustenta. O curso ensina a distância entre os dois.<cite>Psicologia Baseada em Evidências</cite></blockquote><blockquote class="quote en">Reading a paper is not the same as knowing what it supports. The course teaches the distance between the two.<cite>Evidence-Based Psychology</cite></blockquote></div>
+</div></section>
+
+<section class="section section-petrol immersion" id="imersoes"><div class="wrap">
+  <div>
+    <p class="eyebrow" style="color:var(--coral)"><span class="pt">Primeira imersão</span><span class="en">First immersion</span></p>
+    <h2><span class="pt">Algumas coisas não se aprendem apenas assistindo.</span><span class="en">Some things can't be learned just by watching.</span></h2>
+    <p class="lead" style="margin-top:14px"><span class="pt">Escrita &amp; Pensamento Científico em Psicologia — um workshop intensivo, presencial, para poucas pessoas.</span><span class="en">Scientific Writing &amp; Thinking in Psychology — an intensive, in-person workshop for a small group.</span></p>
+    <div class="facts"><span><span class="pt">Presencial · São Paulo</span><span class="en">In person · São Paulo</span></span><span><span class="pt">Grupo pequeno</span><span class="en">Small group</span></span><span><span class="pt">Prática e feedback</span><span class="en">Practice and feedback</span></span><span><span class="pt">Data a definir</span><span class="en">Date to be announced</span></span></div>
+    <a class="btn btn-coral" href="imersoes.html#lista"><span class="pt">Entrar na lista prioritária</span><span class="en">Join the priority list</span></a>
+  </div>
+  <div class="visual"><div><div class="big">15<small><span class="pt">participantes por turma</span><span class="en">participants per cohort</span></small></div></div></div>
+</div></section>
+
+<section class="section" id="certificados"><div class="wrap cert-grid">
+  <div>
+    <p class="eyebrow"><span class="pt">Certificados</span><span class="en">Certificates</span></p>
+    <h2 class="h-l" style="margin:10px 0 22px"><span class="pt">Aprendizagem de verdade, com registro verificável.</span><span class="en">Real learning, with a verifiable record.</span></h2>
+    <ol class="steps">
+      <li><div><h3><span class="pt">Crie uma conta gratuita</span><span class="en">Create a free account</span></h3><p><span class="pt">Nome e e-mail. Nada mais.</span><span class="en">Name and email. Nothing else.</span></p></div></li>
+      <li><div><h3><span class="pt">Escolha um conteúdo</span><span class="en">Choose a piece of content</span></h3><p><span class="pt">Conversas gratuitas, cursos ou imersões.</span><span class="en">Free conversations, courses or immersions.</span></p></div></li>
+      <li><div><h3><span class="pt">Conclua pelo menos 90%</span><span class="en">Complete at least 90%</span></h3><p><span class="pt">O progresso fica salvo; o player não permite pular para o fim.</span><span class="en">Your progress is saved; the player won't let you skip to the end.</span></p></div></li>
+      <li><div><h3><span class="pt">Receba o certificado</span><span class="en">Receive your certificate</span></h3><p><span class="pt">PDF com número individual de verificação.</span><span class="en">PDF with an individual verification number.</span></p></div></li>
+    </ol>
+    <p style="margin-top:22px"><a class="btn btn-secondary" href="certificado.html#verificar"><span class="pt">Verificar um certificado</span><span class="en">Verify a certificate</span></a></p>
+  </div>
+  <div class="cert-shot"><span class="tag lbl"><span class="pt">Exemplo</span><span class="en">Sample</span></span><img src="assets/certificado-exemplo.jpg" alt="<span class="pt">Exemplo de certificado do Psicologia no Sofá, com selo e número de verificação</span><span class="en">Sample Psicologia no Sofá certificate with seal and verification number</span>" loading="lazy" width="1200" height="848"></div>
+</div></section>
+
+<section class="section section-mint" id="historia"><div class="wrap story">
+  <div><p class="eyebrow"><span class="pt">Como começou</span><span class="en">How it started</span></p><h2 class="h-l" style="margin-top:10px"><span class="pt">2020. Congressos fechados, universidades vazias.</span><span class="en">2020. Conferences closed, universities emptied.</span></h2></div>
+  <div class="prose">
+    <div class="pt"><p>O Psicologia no Sofá nasceu em abril de 2020, nas primeiras semanas da pandemia, com uma ideia simples: trazer os pesquisadores que normalmente só se encontram em artigos e nos corredores dos congressos para conversas diretas, em português, com quem quisesse ouvir.</p>
+    <p>Em dois ciclos naquele ano, mais de quatro mil pessoas passaram pelo Sofá para ouvir nomes como William Baum, Charles Catania, Christian Dunker, Thomas Higbee e Martha Hübner. As gravações continuam abertas, agora com certificado de participação.</p>
+    <p><strong>O formato cresceu. O propósito continua o mesmo.</strong></p></div>
+    <div class="en"><p>Psicologia no Sofá began in April 2020, in the first weeks of the pandemic, with a simple idea: bring the researchers normally found only in papers and conference corridors into direct conversations, in Portuguese, with anyone who wanted to listen.</p>
+    <p>Across two cycles that year, more than four thousand people came to the Sofá to hear names such as William Baum, Charles Catania, Christian Dunker, Thomas Higbee and Martha Hübner. The recordings remain open, now with a certificate of participation.</p>
+    <p><strong>The format has grown. The purpose is the same.</strong></p></div>
+    <p style="margin-top:18px"><a class="more" href="sobre.html"><span class="pt">Sobre o projeto →</span><span class="en">About the project →</span></a></p>
+  </div>
+</div></section>
+
+<section class="section" id="fundadores"><div class="wrap">
+  <div class="section-head"><div class="row"><div><p class="eyebrow"><span class="pt">Fundadores</span><span class="en">Founders</span></p><h2 class="h-l"><span class="pt">Cinco amigos, um sofá.</span><span class="en">Five friends, one sofá.</span></h2></div><a class="more" href="sobre.html"><span class="pt">Conheça a equipe →</span><span class="en">Meet the team →</span></a></div>
+    <p class="lead pt">O Psicologia no Sofá foi fundado em 2020 por cinco psicólogas e psicólogos que continuam à frente do projeto.</p>
+    <p class="lead en">Psicologia no Sofá was founded in 2020 by five psychologists who still run the project.</p></div>
+
+  <div class="strip strip-founders" id="founders-strip" data-auto="off" aria-label="<span class="pt">Fundadores</span><span class="en">Founders</span>">
+    <a class="strip-card founder-card" href="sobre.html#equipe"><div class="avatar"><img src="assets/portrait.jpg" alt="Mayron Piccolo" loading="lazy"></div><div class="cap"><b>Mayron Piccolo</b><span class="role"><span class="pt">Cofundador · Direção</span><span class="en">Co-founder · Director</span></span><span class="pt">Psicólogo clínico e analista do comportamento. Harvard University.</span><span class="en">Clinical psychologist and behavior analyst. Harvard University.</span><span class="ig">@picc__m</span></div></a>
+    <a class="strip-card founder-card" href="sobre.html#equipe"><div class="avatar"><span>LZ</span></div><div class="cap"><b>Ludmila Zatorre Dantas</b><span class="role"><span class="pt">Cofundadora</span><span class="en">Co-founder</span></span><span><span class="pt">Perfil em breve.</span><span class="en">Profile coming soon.</span></span></div></a>
+    <a class="strip-card founder-card" href="sobre.html#equipe"><div class="avatar"><span>KC</span></div><div class="cap"><b>Karina Cinel Casaçola</b><span class="role"><span class="pt">Cofundadora</span><span class="en">Co-founder</span></span><span><span class="pt">Perfil em breve.</span><span class="en">Profile coming soon.</span></span></div></a>
+    <a class="strip-card founder-card" href="sobre.html#equipe"><div class="avatar"><span>GG</span></div><div class="cap"><b>Gabriele Gris</b><span class="role"><span class="pt">Cofundadora</span><span class="en">Co-founder</span></span><span><span class="pt">Perfil em breve.</span><span class="en">Profile coming soon.</span></span></div></a>
+    <a class="strip-card founder-card" href="sobre.html#equipe"><div class="avatar"><span>LS</span></div><div class="cap"><b>Luisa Superbia</b><span class="role"><span class="pt">Cofundadora</span><span class="en">Co-founder</span></span><span><span class="pt">Perfil em breve.</span><span class="en">Profile coming soon.</span></span></div></a>
+  </div>
+  <div class="strip-nav"><button type="button" class="strip-btn" data-strip="founders-strip" data-dir="-1" aria-label="Anterior">‹</button><button type="button" class="strip-btn" data-strip="founders-strip" data-dir="1" aria-label="Próximo">›</button></div>
+
+</div></section>
+
+<section class="section section-sand final"><div class="wrap">
+  <p class="eyebrow"><span class="pt">Comece hoje</span><span class="en">Start today</span></p>
+  <h2 style="margin-top:10px"><span class="pt">Sente-se no Sofá.</span><span class="en">Take a seat on the Sofá.</span></h2>
+  <p class="lead" style="margin:14px auto 0"><span class="pt">Conta gratuita, conversas abertas, certificado ao concluir.</span><span class="en">Free account, open conversations, certificate on completion.</span></p>
+  <div class="actions"><a class="btn btn-primary" href="entrar.html?modo=criar"><span class="pt">Criar conta gratuita</span><span class="en">Create a free account</span></a><a class="btn btn-secondary" href="conversas.html"><span class="pt">Ver as Conversas</span><span class="en">See the Conversations</span></a></div>
+</div></section>
+
+<script>
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".strip").forEach(function (s) {
+    var paused = false;
+    function step(dir) { var w = s.querySelector(".strip-card").getBoundingClientRect().width + 14; s.scrollBy({ left: dir * w, behavior: "smooth" }); }
+    document.querySelectorAll('.strip-btn[data-strip="' + s.id + '"], ' + (s.id === "hero-strip" ? ".hero-visual .strip-btn:not([data-strip])" : "#none")).forEach(function (b) { b.addEventListener("click", function () { step(+b.dataset.dir); paused = true; }); });
+    function tick() { if (paused || document.hidden) return; if (s.scrollLeft + s.clientWidth >= s.scrollWidth - 4) s.scrollTo({ left: 0, behavior: "smooth" }); else step(1); }
+    if (!reduce && s.dataset.auto !== "off") { setInterval(tick, 3800); s.addEventListener("pointerenter", function () { paused = true; }); s.addEventListener("pointerleave", function () { paused = false; }); s.addEventListener("touchstart", function () { paused = true; }, { passive: true }); }
+  });
+  var sp = document.getElementById("founder-spot");
+  if (sp) {
+    var slides = sp.querySelectorAll(".spot"), dots = document.querySelector(".spot-dots"), i = 0, hold = false, spReduce = reduce;
+    slides.forEach(function (sl, k) { var d = document.createElement("button"); d.type = "button"; d.setAttribute("role", "tab"); d.setAttribute("aria-label", sl.dataset.name); d.addEventListener("click", function () { go(k); hold = true; }); dots.appendChild(d); });
+    function go(k) { i = (k + slides.length) % slides.length; slides.forEach(function (sl, j) { sl.classList.toggle("active", j === i); }); dots.querySelectorAll("button").forEach(function (d, j) { d.classList.toggle("active", j === i); d.setAttribute("aria-selected", j === i); }); }
+    go(0);
+    if (!spReduce) { setInterval(function () { if (!hold && !document.hidden) go(i + 1); }, 6000); sp.addEventListener("pointerenter", function () { hold = true; }); sp.addEventListener("pointerleave", function () { hold = false; }); }
+  }
+})();
+</script>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><svg viewBox="0 0 200 130" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M28,92 L28,64 C28,54 34,48 44,48 C50,48 54,51 54,56 C54,44 62,38 74,38 L126,38 C138,38 146,44 146,56 C146,51 150,48 156,48 C166,48 172,54 172,64 L172,92 Z"/><line x1="54" y1="56" x2="54" y2="76"/><line x1="146" y1="56" x2="146" y2="76"/><line x1="54" y1="76" x2="146" y2="76"/><line x1="100" y1="40" x2="100" y2="76"/><path d="M46,92 L40,110"/><path d="M154,92 L160,110"/><path d="M74,92 L71,108"/><path d="M126,92 L129,108"/></g><rect x="60" y="52" width="28" height="28" rx="6" transform="rotate(-12 74 66)" fill="#E8846A" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/></svg><span>Psicologia<br>no <b>Sofá</b></span></div>
+        <p class="tagline"><span class="pt">Psicologia, direto da fonte. Conversas gratuitas, cursos e experiências de formação com pesquisadores e profissionais de referência.</span><span class="en">Psychology, straight from the source. Free conversations, courses and learning experiences with leading researchers and practitioners.</span></p>
+      </div>
+      <div><h4><span class="pt">Conteúdo</span><span class="en">Content</span></h4><ul><li><a href="conversas.html">Conversas</a></li><li><a href="cursos.html">Cursos</a></li><li><a href="imersoes.html">Imersões</a></li><li><a href="hayes.html"><span class="pt">Evento · Steven Hayes</span><span class="en">Event · Steven Hayes</span></a></li></ul></div>
+      <div><h4><span class="pt">Conta</span><span class="en">Account</span></h4><ul><li><a href="entrar.html"><span class="pt">Entrar / criar conta</span><span class="en">Sign in / sign up</span></a></li><li><a href="minha-conta.html"><span class="pt">Minha conta</span><span class="en">My account</span></a></li><li><a href="certificado.html#verificar"><span class="pt">Verificar certificado</span><span class="en">Verify a certificate</span></a></li><li><a href="instalar.html"><span class="pt">Instalar no celular</span><span class="en">Install on your phone</span></a></li></ul></div>
+      <div><h4><span class="pt">Institucional</span><span class="en">About</span></h4><ul><li><a href="sobre.html"><span class="pt">Sobre o projeto</span><span class="en">About the project</span></a></li><li><a href="https://www.instagram.com/psicologianosofa/">Instagram</a></li><li><a href="termos.html"><span class="pt">Termos de uso</span><span class="en">Terms of use</span></a></li><li><a href="privacidade.html"><span class="pt">Privacidade</span><span class="en">Privacy</span></a></li><li><a href="https://mayronpiccolo.com/contact.html"><span class="pt">Contato</span><span class="en">Contact</span></a></li></ul></div>
+    </div>
+    <div class="colophon">
+      <span><span class="pt">Fundado em 2020</span><span class="en">Founded in 2020</span>.</span>
+      <span>© 2026 Psicologia no Sofá</span>
+    </div>
+  </div>
+</footer>
+<script>
+  (function () {
+    var root = document.documentElement, bs = document.querySelectorAll("[data-set-lang]");
+    function apply(l) { root.setAttribute("data-lang", l); root.lang = l === "en" ? "en" : "pt-BR"; bs.forEach(function (b) { b.classList.toggle("active", b.dataset.setLang === l); }); try { localStorage.setItem("pns-lang", l); } catch (e) {} }
+    bs.forEach(function (b) { b.addEventListener("click", function () { apply(b.dataset.setLang); }); });
+    apply(root.getAttribute("data-lang") === "en" ? "en" : "pt");
+    var nav = document.getElementById("nav"), t = document.querySelector(".nav-toggle");
+    if (t) t.addEventListener("click", function () { var o = nav.classList.toggle("open"); t.setAttribute("aria-expanded", o); });
+  })();
+</script>
+</body>
+</html>

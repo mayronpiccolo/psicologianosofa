@@ -1,0 +1,15 @@
+{
+  "name": "Psicologia no Sofá",
+  "short_name": "Sofá",
+  "description": "Palestras gratuitas de psicologia — aulas gravadas com certificado.",
+  "start_url": "/conversas.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F5EEE1",
+  "theme_color": "#2C4A54",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/assets/pns-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/pns-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
