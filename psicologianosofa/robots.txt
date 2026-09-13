@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /minha-conta.html
+
+Sitemap: https://psicologianosofa.com/sitemap.xml

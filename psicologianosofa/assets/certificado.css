@@ -1,0 +1,78 @@
+/* ============================================================
+   Certificado de participação (certificado.html)
+   ============================================================ */
+.pns .cert-form { display: flex; flex-direction: column; gap: 20px; max-width: 40em; }
+.pns .field label span { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+.pns .field input { border-color: var(--line); }
+.pns .cert-hint { margin: 0; font-family: var(--sans); font-size: .78rem; color: var(--ink-soft); }
+.pns .cert-hint.ok { color: var(--petrol); font-weight: 600; }
+.pns .cert-talk { background: var(--blue-soft); border-left: 3px solid var(--sage); padding: 16px 20px; }
+.pns .cert-talk .media-kind { color: var(--petrol); margin-bottom: 4px; }
+.pns .cert-talk h3 { margin: 0 0 4px; font-size: 1.2rem; font-weight: 640; line-height: 1.3; }
+.pns .cert-talk p:last-child { margin: 0; font-family: var(--sans); font-size: .82rem; color: var(--ink-soft); }
+.pns .cta[disabled] { opacity: .45; cursor: not-allowed; transform: none; }
+.pns button.cta { border: 0; cursor: pointer; }
+.pns .cert-error { margin: 0; font-family: var(--sans); font-size: .84rem; color: #B4462E; }
+.pns .cert-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; align-items: center; }
+.pns .cert-actions .chip { cursor: pointer; }
+
+/* stage: certificate is laid out at 1123×794 px (A4 landscape @ 96 dpi) and scaled to fit */
+.pns .cert-stage { overflow: hidden; }
+.pns .cert-scale { transform-origin: top left; width: 1123px; }
+.pns .cert {
+  position: relative; width: 1123px; height: 794px; box-sizing: border-box;
+  background: #F5EEE1; color: #22383F; padding: 54px 90px 46px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  box-shadow: var(--shadow); font-family: var(--serif);
+}
+/* frame: petrol outer line, coral inner hairline, small coral corner marks */
+.pns .cert-frame { position: absolute; inset: 22px; border: 2px solid #2C4A54; pointer-events: none; }
+.pns .cert-frame::after { content: ""; position: absolute; inset: 7px; border: 1px solid #E8846A; }
+.pns .cert-corner { position: absolute; width: 26px; height: 26px; border: 2px solid #E8846A; pointer-events: none; }
+.pns .cert-corner.tl { top: 40px; left: 40px; border-right: 0; border-bottom: 0; }
+.pns .cert-corner.tr { top: 40px; right: 40px; border-left: 0; border-bottom: 0; }
+.pns .cert-corner.bl { bottom: 40px; left: 40px; border-right: 0; border-top: 0; }
+.pns .cert-corner.br { bottom: 40px; right: 40px; border-left: 0; border-top: 0; }
+
+.pns .cert-top { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.pns .cert-emblem { width: 118px; height: auto; display: block; margin-bottom: 2px; }
+.pns .cert-brand {
+  margin: 0; font-family: "Poppins", "Avenir Next", "Century Gothic", var(--sans); font-weight: 900;
+  font-size: 15px; letter-spacing: .28em; text-transform: uppercase; color: #2C4A54;
+}
+.pns .cert-brand span { color: #E8846A; }
+.pns .cert-title {
+  margin: 10px 0 0; font-family: var(--serif); font-weight: 400; font-size: 46px; line-height: 1;
+  letter-spacing: -.01em; color: #2C4A54; font-variation-settings: "opsz" 144;
+}
+.pns .cert-rule { display: block; width: 72px; height: 2px; background: #E8846A; margin-top: 16px; }
+
+.pns .cert-body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 20px; }
+.pns .cert-lead { margin: 0 0 8px; font-family: var(--sans); font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: #5F6E72; }
+.pns .cert-name {
+  margin: 0 0 20px; font-size: 60px; font-weight: 400; font-style: italic; line-height: 1.1; letter-spacing: -.005em; color: #22383F;
+  font-variation-settings: "opsz" 144; padding: 0 28px 10px; border-bottom: 1px solid #2C4A54; min-width: 460px; max-width: 920px;
+}
+.pns .cert-text { margin: 0; max-width: 800px; font-size: 19.5px; line-height: 1.6; color: #22383F; }
+.pns .cert-text em { font-style: italic; color: #2C4A54; }
+.pns .cert-text strong { font-weight: 600; color: #2C4A54; }
+
+.pns .cert-bottom { width: 100%; display: grid; grid-template-columns: 1fr 190px 1fr; align-items: end; gap: 24px; }
+.pns .cert-sign { text-align: center; padding-top: 12px; border-top: 1px solid #2C4A54; max-width: 380px; justify-self: end; width: 100%; height: 92px; box-sizing: border-box; }
+.pns .cert-sig-name { margin: 0; font-size: 16.5px; font-weight: 600; line-height: 1.2; color: #2C4A54; white-space: nowrap; letter-spacing: -.01em; }
+.pns .cert-sig-role { margin: 3px 0 0; font-family: var(--sans); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #5F6E72; }
+.pns .cert-sig-cred { margin: 7px 0 0; font-family: var(--sans); font-size: 10px; line-height: 1.5; color: #5F6E72; font-variant-numeric: tabular-nums; }
+.pns .cert-seal svg { width: 176px; height: 176px; display: block; margin: 0 auto -6px; }
+.pns .cert-issue { text-align: center; justify-self: start; max-width: 380px; width: 100%; padding-top: 12px; height: 92px; box-sizing: border-box; border-top: 1px solid #2C4A54; font-family: var(--sans); font-size: 10.5px; line-height: 1.7; color: #5F6E72; }
+.pns .cert-issue-line { margin: 0; }
+.pns .cert-issue b { color: #22383F; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+@media print {
+  .site-nav, .site-footer, .page-hero, .section:not(#preview-section), .sec-label, .skip-link { display: none !important; }
+  @page { size: A4 landscape; margin: 0; }
+  body, .pns { background: #F5EEE1; }
+  .pns .cert-scale { transform: none !important; height: auto !important; }
+  .pns .sec-grid { display: block; }
+  .pns .cert { box-shadow: none; width: 297mm; height: 210mm; }
+}
+
