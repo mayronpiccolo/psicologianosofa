@@ -25,14 +25,14 @@
 <meta name="twitter:title" content="Certificados — Psicologia no Sofá"><meta name="twitter:description" content="Emita ou verifique certificados de participação do Psicologia no Sofá."><meta name="twitter:image" content="https://psicologianosofa.com/assets/pns-og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/sofa.css?v=20260914f">
+<link rel="stylesheet" href="assets/sofa.css?v=20260915a">
 <script>
   (function () { try { var q = new URLSearchParams(location.search).get("lang"), s = localStorage.getItem("pns-lang");
     var l = (q === "en" || q === "pt") ? q : (s === "en" ? "en" : "pt"); document.documentElement.setAttribute("data-lang", l); document.documentElement.lang = l === "en" ? "en" : "pt-BR"; } catch (e) {} })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="assets/pns-config.js?v=20260914f"></script>
-<script src="assets/pns-app.js?v=20260914f"></script>
+<script src="assets/pns-config.js?v=20260915a"></script>
+<script src="assets/pns-app.js?v=20260915a"></script>
 <link rel="stylesheet" href="assets/certificado.css?v=20260912b">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
 <script defer src="assets/certificado-pdf.js?v=20260912b"></script>
@@ -60,7 +60,7 @@
 
   <div class="wrap">
     <nav class="cert-tabs" aria-label="Tipo de certificado">
-      <a href="#ao-vivo" data-panel="ao-vivo" aria-current="true">Palestra ao vivo</a>
+      <a href="#ao-vivo" data-panel="ao-vivo" aria-current="true">Conversa ao vivo</a>
       <a href="#gravadas" data-panel="gravadas">Conversas gravadas</a>
       <a href="#verificar" data-panel="verificar">Verificar</a>
     </nav>
@@ -69,122 +69,55 @@
     <div class="wrap">
       <div class="sec-grid">
         <div class="sec-label">
-          <h2>Emitir certificado</h2>
-          <p>O código é único para cada palestra e é anunciado ao vivo, nos minutos finais. Ele identifica a palestra e a data — você só precisa acrescentar o seu nome.</p>
+          <h2>Certificado de conversa ao vivo</h2>
+          <p>O código é anunciado nos minutos finais de cada conversa. Ele serve para pedir o certificado — a emissão depende da lista de presença da sala, que conferimos depois do encontro.</p>
+          <p>O certificado fica guardado na sua conta, com um número que qualquer pessoa pode verificar aqui mesmo.</p>
         </div>
         <div>
-          <form class="cert-form" id="cert-form" novalidate>
-            <div class="field">
-              <label for="code">Código da palestra</label>
-              <input id="code" name="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ex.: SOFA-XXXX" required>
-              <p class="cert-hint" id="code-hint" aria-live="polite">Digite o código para identificar a palestra.</p>
+          <div id="live-anon" hidden>
+            <div class="app-card">
+              <p class="media-kind">Primeiro, a sua conta</p>
+              <h3 style="margin:.2em 0 .5em">Crie a sua conta gratuita</h3>
+              <p class="form-note">A conta é o lugar onde o certificado fica guardado — e é o que permite verificá-lo depois. Leva um minuto: nome, e-mail e senha.</p>
+              <div class="actions" style="margin-top:16px">
+                <a class="btn btn-primary" id="live-signup" href="entrar.html?modo=criar">Criar conta gratuita</a>
+                <a class="btn btn-secondary" id="live-signin" href="entrar.html">Já tenho conta</a>
+              </div>
+              <p class="form-note" style="margin-top:14px">Guardamos o código que você digitou; ao voltar, é só confirmar.</p>
             </div>
-            <div class="cert-talk" id="talk-card" hidden>
-              <p class="media-kind">Palestra identificada</p>
-              <h3 id="talk-title"></h3>
-              <p id="talk-meta"></p>
+          </div>
+
+          <form class="cert-form" id="live-form" novalidate hidden>
+            <div class="field">
+              <label for="live-code">Código da conversa</label>
+              <input id="live-code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ex.: SOFA-XXXX-XXXX" required>
             </div>
             <div class="field">
-              <label for="name">Nome completo <span>(como deve aparecer no certificado)</span></label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="Maria da Silva Santos" required maxlength="80">
+              <label for="live-name">Nome completo <span>(como deve aparecer no certificado)</span></label>
+              <input id="live-name" type="text" autocomplete="name" placeholder="Maria da Silva Santos" required maxlength="80">
             </div>
             <div class="form-foot">
-              <button class="btn btn-primary" type="submit" id="go" disabled>Gerar certificado (PDF)</button>
-              <p class="form-note">O PDF é gerado no seu navegador — nenhum dado é enviado ou armazenado.</p>
+              <button class="btn btn-primary" type="submit" id="live-go">Pedir o certificado</button>
+              <p class="form-note" id="live-note"></p>
             </div>
-            <p class="cert-error" id="err" role="alert" hidden></p>
+            <p class="cert-error" id="live-err" role="alert" hidden></p>
           </form>
 
+          <div class="app-card" id="live-done" hidden style="margin-top:4px">
+            <p class="media-kind" id="live-done-kind">Pedido recebido</p>
+            <h3 id="live-done-title" style="margin:.2em 0 .5em"></h3>
+            <p id="live-done-body"></p>
+            <div class="actions" style="margin-top:16px"><a class="btn btn-primary" href="minha-conta.html">Ir para Minha conta</a></div>
+          </div>
+
           <div class="callout" id="how">
-            <p><b>Não recebeu o código?</b> Ele é divulgado apenas ao vivo, ao final de cada palestra, e vale para quem participou daquele encontro. Dúvidas: <a href="https://www.instagram.com/psicologianosofa/">@psicologianosofa</a>.</p>
+            <p><b>Não recebeu o código?</b> Ele é divulgado apenas ao vivo, no fim de cada conversa. O certificado é emitido para quem esteve na sala — quem assistiu pela transmissão no YouTube não entra na lista de presença. Dúvidas: <a href="mailto:contato@psicologianosofa.com">contato@psicologianosofa.com</a>.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Preview of the certificate (also the source for the PDF) ===== -->
-  <section class="section" id="preview-section" hidden>
-    <div class="wrap">
-      <div class="sec-grid">
-        <div class="sec-label">
-          <h2>Pré-visualização</h2>
-          <p>Confira o nome com atenção antes de baixar. O arquivo sai em A4 paisagem.</p>
-          <div class="cert-actions">
-            <button class="btn btn-primary" type="button" id="download">Baixar PDF</button>
-            <button class="chip" type="button" id="edit">Corrigir dados</button>
-          </div>
-        </div>
-        <div class="cert-stage">
-          <div class="cert-scale" id="cert-scale">
-            <div class="cert" id="cert" lang="pt-BR">
-              <div class="cert-frame"></div>
-              <span class="cert-corner tl"></span><span class="cert-corner tr"></span><span class="cert-corner bl"></span><span class="cert-corner br"></span>
-
-              <header class="cert-top">
-                <svg class="cert-emblem" viewBox="0 0 330 240" aria-hidden="true">
-                  <g fill="none" stroke="#2C4A54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-                    <ellipse cx="288" cy="214" rx="11" ry="3"/><path d="M288,211 L288,112 C288,84 262,70 238,70 L226,70"/>
-                  </g>
-                  <path d="M212,94 L242,94 L234,70 L220,70 Z" fill="#E8846A" stroke="#2C4A54" stroke-width="4" stroke-linejoin="round"/>
-                  <g transform="translate(20,72) scale(1.3)">
-                    <g fill="none" stroke="#2C4A54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M28,92 L28,64 C28,54 34,48 44,48 C50,48 54,51 54,56 C54,44 62,38 74,38 L126,38 C138,38 146,44 146,56 C146,51 150,48 156,48 C166,48 172,54 172,64 L172,92 Z"/>
-                        <line x1="54" y1="56" x2="54" y2="76"/><line x1="146" y1="56" x2="146" y2="76"/><line x1="54" y1="76" x2="146" y2="76"/><line x1="100" y1="40" x2="100" y2="76"/>
-                        <path d="M46,92 L40,110"/><path d="M154,92 L160,110"/><path d="M74,92 L71,108"/><path d="M126,92 L129,108"/>
-                      </g>
-                      <rect x="60" y="52" width="28" height="28" rx="6" transform="rotate(-12 74 66)" fill="#E8846A" stroke="#2C4A54" stroke-width="4" stroke-linejoin="round"/>
-                  </g>
-                </svg>
-                <p class="cert-brand">Psicologia no <span>Sofá</span></p>
-                <h2 class="cert-title">Certificado de Participação</h2>
-                <span class="cert-rule"></span>
-              </header>
-
-              <div class="cert-body">
-                <p class="cert-lead">Certificamos que</p>
-                <p class="cert-name" id="c-name">Nome da Pessoa</p>
-                <p class="cert-text">participou da palestra <em id="c-title">“Título da palestra”</em>, ministrada por <strong id="c-speaker">Palestrante</strong>, promovida pelo Psicologia no Sofá e realizada online, ao vivo, em <strong id="c-date">6 de outubro de 2026</strong>, com duração de <strong>1 hora de atividade</strong>.</p>
-              </div>
-
-              <footer class="cert-bottom">
-                <div class="cert-sign">
-                  <p class="cert-sig-name" id="c-signer">Mayron Pereira Piccolo Ribeiro, PhD, BCBA</p>
-                  <p class="cert-sig-role" id="c-role">pelo Psicologia no Sofá</p>
-                  <p class="cert-sig-cred" id="c-cred"></p>
-                </div>
-                <div class="cert-seal">
-                  <svg viewBox="0 0 240 240" aria-hidden="true">
-                    <defs><path id="seal-arc" d="M120,120 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
-                    <circle cx="120" cy="120" r="112" fill="#F5EEE1" stroke="#2C4A54" stroke-width="3"/>
-                    <circle cx="120" cy="120" r="104" fill="none" stroke="#2C4A54" stroke-width="1.2"/>
-                    <circle cx="120" cy="120" r="70" fill="none" stroke="#2C4A54" stroke-width="1.2"/>
-                    <text font-family="Poppins, 'Avenir Next', 'Century Gothic', sans-serif" font-weight="600" font-size="13" fill="#2C4A54">
-                      <textPath href="#seal-arc" startOffset="0" textLength="552" lengthAdjust="spacing">PSICOLOGIA NO SOFÁ · CERTIFICADO DE PARTICIPAÇÃO · </textPath>
-                    </text>
-                    <g transform="translate(66,78) scale(0.54)">
-                      <g fill="none" stroke="#2C4A54" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M28,92 L28,64 C28,54 34,48 44,48 C50,48 54,51 54,56 C54,44 62,38 74,38 L126,38 C138,38 146,44 146,56 C146,51 150,48 156,48 C166,48 172,54 172,64 L172,92 Z"/>
-                        <line x1="54" y1="56" x2="54" y2="76"/><line x1="146" y1="56" x2="146" y2="76"/><line x1="54" y1="76" x2="146" y2="76"/><line x1="100" y1="40" x2="100" y2="76"/>
-                        <path d="M46,92 L40,110"/><path d="M154,92 L160,110"/><path d="M74,92 L71,108"/><path d="M126,92 L129,108"/>
-                      </g>
-                      <rect x="60" y="52" width="28" height="28" rx="6" transform="rotate(-12 74 66)" fill="#E8846A" stroke="#2C4A54" stroke-width="5" stroke-linejoin="round"/>
-                    </g>
-                    <text x="120" y="163" text-anchor="middle" font-family="Poppins, 'Avenir Next', 'Century Gothic', sans-serif" font-weight="900" font-size="15" letter-spacing="2" fill="#E8846A" id="c-seal-year">2026</text>
-                  </svg>
-                </div>
-                <div class="cert-issue">
-                  <p class="cert-issue-line">Emitido em <b id="c-issued">—</b></p>
-                  <p class="cert-issue-line">Certificado nº <b id="c-id">—</b></p>
-                  <p class="cert-issue-line">psicologianosofa.com/certificado.html</p>
-                </div>
-              </footer>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="section cert-panel" id="gravadas" hidden>
     <div class="wrap">
@@ -211,7 +144,7 @@
       <div class="sec-grid">
         <div class="sec-label">
           <h2>Verificar</h2>
-          <p>Digite o número impresso no certificado (ex.: PNS-A-261012-3F9A2C). Certificados de palestras ao vivo emitidos apenas com o código da palestra não constam neste registro.</p>
+          <p>Digite o número impresso no certificado (ex.: PNS-A-261012-3F9A2C). Vale para os dois tipos: conversas gravadas e conversas ao vivo — todo certificado emitido pela plataforma tem registro e pode ser conferido aqui.</p>
         </div>
         <div class="app-card">
           <form class="cert-form" id="f-verify" novalidate>
@@ -225,148 +158,6 @@
   </section>
 
 <script>
-/* ============================================================
-   ORGANIZADORES — quem pode assinar pelo Psicologia no Sofá.
-   Cada pessoa: nome completo, títulos (degrees, opcional — vêm após o nome,
-   na mesma linha) e até duas linhas de credenciais (registro
-   profissional, instituição…). Deixe cred: [] se não houver.
-   ============================================================ */
-var SIGNERS = {
-  mayron: {
-    name: "Mayron Pereira Piccolo Ribeiro",
-    degrees: "PhD, BCBA",
-    cred: ["Licensed Clinical Psychologist, MA/USA · PSYNE10001186",
-           "Board Certified Behavior Analyst · 1-22-57504"]
-  }
-  /* exemplo para acrescentar alguém:
-  ana: { name: "Ana Souza", degrees: "MSc", cred: ["Psicóloga · CRP 06/000000"] }
-  */
-};
-
-/* ============================================================
-   TALKS — uma entrada por palestra certificável.
-   Para acrescentar: copie um bloco, defina um código único (letras/dígitos/
-   hífens; não diferencia maiúsculas), título, palestrante, data (AAAA-MM-DD)
-   e signer = a chave de quem organizou, em SIGNERS acima.
-   O código é anunciado ao vivo, no fim da palestra.
-   ============================================================ */
-var TALKS = [
-  {
-    code: "SOFA-8SRH-NNRX",
-    title: "Psicologia no Sofá com Prof. Steven C. Hayes",
-    speaker: "Prof. Steven C. Hayes (University of Nevada, Reno)",
-    date: "2026-10-06",
-    signer: "mayron"
-  }
-];
-
-(function () {
-  "use strict";
-  var $ = function (id) { return document.getElementById(id); };
-  var codeEl = $("code"), nameEl = $("name"), go = $("go"), hint = $("code-hint"), err = $("err");
-  var talkCard = $("talk-card"), current = null;
-
-  var MONTHS = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-  function longDate(iso) {
-    var p = iso.split("-"); return parseInt(p[2], 10) + " de " + MONTHS[parseInt(p[1], 10) - 1] + " de " + p[0];
-  }
-  function today() {
-    var d = new Date(); return longDate(d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"));
-  }
-  function norm(s) { return (s || "").toUpperCase().replace(/\s+/g, "").replace(/[^A-Z0-9-]/g, ""); }
-  function cleanName(s) { return (s || "").replace(/\s+/g, " ").trim(); }
-  function hash(s) { /* small deterministic id, not security */
-    var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
-    return (h >>> 0).toString(36).toUpperCase().padStart(7, "0").slice(-7);
-  }
-  function findTalk(code) {
-    var c = norm(code);
-    for (var i = 0; i < TALKS.length; i++) if (norm(TALKS[i].code) === c) return TALKS[i];
-    return null;
-  }
-
-  function refresh() {
-    current = findTalk(codeEl.value);
-    if (current) {
-      talkCard.hidden = false;
-      $("talk-title").textContent = current.title;
-      $("talk-meta").textContent = current.speaker + " · " + longDate(current.date) + " · 1 hora de atividade";
-      hint.textContent = "Código reconhecido.";
-      hint.classList.add("ok");
-    } else {
-      talkCard.hidden = true;
-      hint.textContent = codeEl.value.trim() ? "Código não reconhecido — confira letras e números." : "Digite o código para identificar a palestra.";
-      hint.classList.remove("ok");
-    }
-    go.disabled = !(current && cleanName(nameEl.value).length >= 3);
-    err.hidden = true;
-  }
-  codeEl.addEventListener("input", refresh);
-  nameEl.addEventListener("input", refresh);
-
-  function fill() {
-    var name = cleanName(nameEl.value);
-    $("c-name").textContent = name;
-    $("c-title").textContent = "“" + current.title + "”";
-    $("c-speaker").textContent = current.speaker;
-    $("c-date").textContent = longDate(current.date);
-    $("c-seal-year").textContent = current.date.slice(0, 4);
-    var who = SIGNERS[current.signer] || SIGNERS.mayron;
-    $("c-signer").textContent = who.name + (who.degrees ? ", " + who.degrees : "");
-    $("c-role").textContent = "pelo Psicologia no Sofá";
-    var cred = $("c-cred"); cred.textContent = "";
-    (who.cred || []).forEach(function (line, i) { if (i) cred.appendChild(document.createElement("br")); cred.appendChild(document.createTextNode(line)); });
-    $("c-issued").textContent = today();
-    $("c-id").textContent = "PNS-" + current.date.replace(/-/g, "").slice(2) + "-" + hash(norm(current.code) + "|" + name.toLowerCase());
-    /* shrink very long names */
-    var n = $("c-name"); n.style.fontSize = name.length > 34 ? "42px" : (name.length > 26 ? "50px" : "58px");
-  }
-
-  function scalePreview() {
-    var stage = $("cert-scale"); var w = stage.parentElement.clientWidth;
-    var s = Math.min(1, w / 1123); stage.style.transform = "scale(" + s + ")"; stage.style.height = (794 * s) + "px";
-  }
-  window.addEventListener("resize", scalePreview);
-
-  $("cert-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    refresh(); if (go.disabled) return;
-    var name = cleanName(nameEl.value);
-    if (name.split(" ").length < 2) { err.textContent = "Digite o nome completo (nome e sobrenome)."; err.hidden = false; return; }
-    fill();
-    $("preview-section").hidden = false; scalePreview();
-    $("preview-section").scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-  $("edit").addEventListener("click", function () {
-    $("preview-section").hidden = true; nameEl.focus(); nameEl.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
-
-  $("download").addEventListener("click", function () {
-    var btn = this; btn.disabled = true; btn.textContent = "Gerando…";
-    var who = SIGNERS[current.signer] || SIGNERS.mayron;
-    var name = cleanName(nameEl.value);
-    window.PNSCert.generate({
-      name: name, title: current.title, speaker: current.speaker,
-      dateText: longDate(current.date), year: current.date.slice(0, 4),
-      issuedText: today(), certId: $("c-id").textContent,
-      signerName: who.name, signerDegrees: who.degrees, signerCred: who.cred || [],
-      mode: current.mode || "live", durationText: current.duration || "1 hora de atividade"
-    }).then(function (pdf) {
-      var safe = name.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z ]/g, "").trim().replace(/ +/g, "-");
-      pdf.save("Certificado-Psicologia-no-Sofa-" + safe + ".pdf");
-    }).catch(function (e) {
-      err.textContent = "Não foi possível gerar o PDF (" + (e && e.message ? e.message : "erro") + "). Tente novamente; se persistir, use Imprimir → Salvar como PDF."; err.hidden = false;
-    }).finally(function () { btn.disabled = false; btn.textContent = "Baixar PDF"; });
-  });
-  /* warm the font cache as soon as a valid talk is recognized */
-  codeEl.addEventListener("input", function () { if (findTalk(codeEl.value) && window.PNSCert) window.PNSCert.preload("assets/fonts/").catch(function () {}); });
-
-  /* ?codigo=… pre-fills the code (for a link in the chat/Instagram) */
-  var q = new URLSearchParams(location.search).get("codigo");
-  if (q) { codeEl.value = q; }
-  refresh();
-})();
-</script><script>
 (function () {
   var panels = ["ao-vivo", "gravadas", "verificar"];
   function show(id) {
@@ -391,7 +182,71 @@ var TALKS = [
   document.getElementById("f-verify").addEventListener("submit", function (e) { e.preventDefault(); run(); });
   var q = new URLSearchParams(location.search).get("verificar"); if (q && q !== "1") { code.value = q; run(); }
 })();
+</script><script>
+/* Certificado ao vivo: pedido gravado na conta, emissão conferida na lista de presença. */
+(function () {
+  "use strict";
+  var $ = function (i) { return document.getElementById(i); };
+  var form = $("live-form"), anon = $("live-anon"), done = $("live-done"),
+      codeEl = $("live-code"), nameEl = $("live-name"), go = $("live-go"),
+      note = $("live-note"), err = $("live-err");
+  if (!form || !window.PNS) return;
+  var STASH = "pns-codigo-ao-vivo";
+
+  function stash(v) { try { v ? localStorage.setItem(STASH, v) : localStorage.removeItem(STASH); } catch (e) {} }
+  function unstash() { try { return localStorage.getItem(STASH) || ""; } catch (e) { return ""; } }
+  function prefill() { return PNS.qs("codigo") || unstash() || ""; }
+
+  function showDone(kind, title, body) {
+    $("live-done-kind").textContent = kind; $("live-done-title").textContent = title; $("live-done-body").textContent = body;
+    form.hidden = true; anon.hidden = true; done.hidden = false;
+  }
+
+  PNS.getSession().then(function (session) {
+    var code = prefill();
+    if (!session) {
+      /* sem conta: guarda o código e manda criar, voltando para cá */
+      if (code) stash(code);
+      var back = "certificado.html?codigo=" + encodeURIComponent(code) + "#ao-vivo";
+      $("live-signup").href = "entrar.html?modo=criar&next=" + encodeURIComponent(back);
+      $("live-signin").href = "entrar.html?next=" + encodeURIComponent(back);
+      anon.hidden = false;
+      return;
+    }
+    form.hidden = false;
+    if (code) codeEl.value = code;
+    PNS.getProfile().then(function (p) { if (p && p.full_name && !nameEl.value) nameEl.value = p.full_name; });
+
+    /* já pediu? mostra a situação em vez do formulário */
+    return PNS.sb.rpc("my_live_claims").then(function (r) {
+      var c = (r.data || [])[0];
+      if (!c) return;
+      if (c.status === "emitido") showDone("Certificado emitido", c.lecture_title, "O certificado está em Minha conta, com o número " + c.certificate_id + ".");
+      else if (c.status === "pendente") showDone("Pedido recebido", c.lecture_title, "Estamos conferindo a lista de presença. O certificado aparece na sua conta em até 24 horas.");
+      else if (c.status === "sem-registro") showDone("Não localizamos a sua presença", c.lecture_title, "Veja o aviso na sua conta: normalmente é um e-mail diferente do usado na inscrição do Zoom, e resolvemos por e-mail.");
+    });
+  }).catch(function () {});
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); err.hidden = true;
+    var code = codeEl.value.trim(), nome = nameEl.value.replace(/\s+/g, " ").trim();
+    if (!code) { err.textContent = "Digite o código anunciado no fim da conversa."; err.hidden = false; return; }
+    if (nome.split(" ").length < 2) { err.textContent = "Escreva o seu nome completo, como deve aparecer no certificado."; err.hidden = false; return; }
+    go.disabled = true; note.textContent = "Enviando…";
+    PNS.sb.rpc("request_live_certificate", { p_code: code, p_holder_name: nome }).then(function (r) {
+      if (r.error) throw r.error;
+      var d = (r.data || [])[0] || {};
+      stash("");
+      if (d.status === "emitido") showDone("Certificado emitido", d.lecture_title || "", d.message || "");
+      else if (d.status === "sem-registro") showDone("Não localizamos a sua presença", d.lecture_title || "", d.message || "");
+      else showDone("Pedido recebido", d.lecture_title || "", d.message || "");
+    }).catch(function (x) {
+      err.textContent = x.message || "Não foi possível registrar o pedido."; err.hidden = false;
+    }).finally(function () { go.disabled = false; note.textContent = ""; });
+  });
+})();
 </script>
+
 </main>
 
 <footer class="footer">

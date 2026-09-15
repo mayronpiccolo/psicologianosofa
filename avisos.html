@@ -2,9 +2,9 @@
 <html lang="pt-BR" data-lang="pt">
 <head>
 <meta charset="utf-8">
-<title>Entrar — Psicologia no Sofá</title>
+<title>Avisos — Psicologia no Sofá</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Entre ou crie a sua conta gratuita no Psicologia no Sofá.">
+<meta name="description" content="Recados da equipe e o andamento dos seus certificados.">
 <link rel="icon" href="assets/pns-favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="assets/pns-icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="assets/pns-apple-touch-icon.png">
@@ -15,14 +15,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Psicologia no Sofá">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Entrar — Psicologia no Sofá">
-<meta property="og:description" content="Entre ou crie a sua conta gratuita no Psicologia no Sofá.">
-<meta property="og:url" content="https://psicologianosofa.com/entrar.html">
-<link rel="canonical" href="https://psicologianosofa.com/entrar.html">
+<meta property="og:title" content="Avisos — Psicologia no Sofá">
+<meta property="og:description" content="Recados da equipe e o andamento dos seus certificados.">
+<meta property="og:url" content="https://psicologianosofa.com/avisos.html">
+<link rel="canonical" href="https://psicologianosofa.com/avisos.html">
 <meta property="og:image" content="https://psicologianosofa.com/assets/pns-og.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Entrar — Psicologia no Sofá"><meta name="twitter:description" content="Entre ou crie a sua conta gratuita no Psicologia no Sofá."><meta name="twitter:image" content="https://psicologianosofa.com/assets/pns-og.jpg">
+<meta name="twitter:title" content="Avisos — Psicologia no Sofá"><meta name="twitter:description" content="Recados da equipe e o andamento dos seus certificados."><meta name="twitter:image" content="https://psicologianosofa.com/assets/pns-og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/sofa.css?v=20260915a">
@@ -33,7 +33,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="assets/pns-config.js?v=20260915a"></script>
 <script src="assets/pns-app.js?v=20260915a"></script>
-
+<meta name="robots" content="noindex, nofollow">
 </head>
 <body>
 <a class="skip-link" href="#main"><span class="pt">Pular para o conteúdo</span><span class="en">Skip to content</span></a>
@@ -55,91 +55,33 @@
     <div class="wrap">
       <div class="sec-grid">
         <div class="sec-label">
-          <h2>Sua conta</h2>
-          <p>Gratuita. Serve para guardar o seu progresso nas conversas e emitir os certificados. Usamos apenas nome e e-mail — veja a <a href="privacidade.html">política de privacidade</a>.</p>
+          <h2>Avisos</h2>
+          <p>Recados da equipe do Psicologia no Sofá e o andamento dos seus certificados.</p>
+          <p class="form-note">Esta caixa não recebe respostas. Para falar com a equipe, escreva para <a href="mailto:contato@psicologianosofa.com">contato@psicologianosofa.com</a>.</p>
         </div>
-        <div class="app-card">
-          <div class="app-tabs" role="tablist">
-            <button type="button" class="app-tab active" data-tab="login" role="tab" aria-selected="true">Entrar</button>
-            <button type="button" class="app-tab" data-tab="signup" role="tab" aria-selected="false">Criar conta</button>
-          </div>
-
-          <form class="cert-form" id="f-login" novalidate>
-            <div class="field"><label for="l-email">E-mail</label><input id="l-email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="l-pass">Senha</label><input id="l-pass" type="password" autocomplete="current-password" required minlength="8"></div>
-            <div class="form-foot"><button class="btn btn-primary" type="submit">Entrar</button><button type="button" class="app-link" id="forgot">Esqueci a senha</button></div>
-            <p class="cert-error" id="l-err" role="alert" hidden></p>
-          </form>
-
-          <form class="cert-form" id="f-signup" novalidate hidden>
-            <div class="field"><label for="s-name">Nome completo <span>(como deve aparecer nos certificados)</span></label><input id="s-name" type="text" autocomplete="name" required maxlength="80"></div>
-            <div class="field"><label for="s-email">E-mail</label><input id="s-email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="s-pass">Senha <span>(mínimo 8 caracteres)</span></label><input id="s-pass" type="password" autocomplete="new-password" required minlength="8"></div>
-            <label class="app-check"><input type="checkbox" id="s-consent" required> Li e concordo com a <a href="privacidade.html" target="_blank">política de privacidade</a>.</label>
-            <div class="form-foot"><button class="btn btn-primary" type="submit">Criar conta</button></div>
-            <p class="cert-error" id="s-err" role="alert" hidden></p>
-          </form>
-
-          <form class="cert-form" id="f-reset" novalidate hidden>
-            <p class="form-note">Defina a sua nova senha.</p>
-            <div class="field"><label for="r-pass">Nova senha</label><input id="r-pass" type="password" autocomplete="new-password" required minlength="8"></div>
-            <div class="form-foot"><button class="btn btn-primary" type="submit">Salvar senha</button></div>
-            <p class="cert-error" id="r-err" role="alert" hidden></p>
-          </form>
-
-          <p class="app-msg" id="msg" hidden></p>
-        </div>
+        <div id="avisos"><p class="form-note">Carregando…</p></div>
       </div>
     </div>
   </section>
 <script>
 (function () {
-  var sb = PNS.sb, $ = function (i) { return document.getElementById(i); };
-  var next = PNS.qs("next") || "conversas.html";
-  if (!/^[\w.-]+\.html(\?.*)?$/.test(next)) next = "conversas.html";
-  function show(id) { ["f-login", "f-signup", "f-reset"].forEach(function (f) { $(f).hidden = f !== id; });
-    document.querySelectorAll(".app-tab").forEach(function (t) { var on = t.dataset.tab === (id === "f-signup" ? "signup" : "login"); t.classList.toggle("active", on); t.setAttribute("aria-selected", on); }); }
-  function err(id, m) { var e = $(id); e.textContent = m; e.hidden = !m; }
-  function msg(m) { $("msg").textContent = m; $("msg").hidden = !m; }
-  function pt(e) { var m = (e && e.message) || "";
-    if (/Invalid login/i.test(m)) return "E-mail ou senha incorretos.";
-    if (/already registered|already exists/i.test(m)) return "Já existe uma conta com este e-mail. Use “Entrar”.";
-    if (/rate limit|too many/i.test(m)) return "Muitas tentativas. Aguarde alguns minutos e tente de novo.";
-    if (/Password should be/i.test(m)) return "A senha precisa ter pelo menos 8 caracteres.";
-    if (/not confirmed/i.test(m)) return "E-mail ainda não confirmado. Verifique a sua caixa de entrada.";
-    return "Não foi possível concluir: " + m; }
-
-  document.querySelectorAll(".app-tab").forEach(function (t) { t.addEventListener("click", function () { show(t.dataset.tab === "signup" ? "f-signup" : "f-login"); msg(""); }); });
-  if (PNS.qs("modo") === "criar") show("f-signup");
-
-  $("f-login").addEventListener("submit", function (ev) { ev.preventDefault(); err("l-err", "");
-    sb.auth.signInWithPassword({ email: $("l-email").value.trim(), password: $("l-pass").value })
-      .then(function (r) { if (r.error) throw r.error; location.href = next; })
-      .catch(function (e) { err("l-err", pt(e)); }); });
-
-  $("f-signup").addEventListener("submit", function (ev) { ev.preventDefault(); err("s-err", "");
-    var name = $("s-name").value.replace(/\s+/g, " ").trim();
-    if (name.split(" ").length < 2) return err("s-err", "Digite o nome completo (nome e sobrenome).");
-    if (!$("s-consent").checked) return err("s-err", "É preciso concordar com a política de privacidade.");
-    sb.auth.signUp({ email: $("s-email").value.trim(), password: $("s-pass").value,
-                     options: { data: { full_name: name }, emailRedirectTo: PNS_CONFIG.siteUrl + "/entrar.html" } })
-      .then(function (r) { if (r.error) throw r.error;
-        if (r.data.session) { location.href = next; }
-        else { msg("Conta criada. Enviamos um e-mail de confirmação para " + $("s-email").value.trim() + " — abra o link e depois entre."); show("f-login"); } })
-      .catch(function (e) { err("s-err", pt(e)); }); });
-
-  $("forgot").addEventListener("click", function () { err("l-err", "");
-    var email = $("l-email").value.trim(); if (!email) return err("l-err", "Digite o seu e-mail acima e clique de novo em “Esqueci a senha”.");
-    sb.auth.resetPasswordForEmail(email, { redirectTo: PNS_CONFIG.siteUrl + "/entrar.html" })
-      .then(function (r) { if (r.error) throw r.error; msg("Se este e-mail tiver uma conta, você receberá um link para redefinir a senha."); })
-      .catch(function (e) { err("l-err", pt(e)); }); });
-
-  sb.auth.onAuthStateChange(function (event) { if (event === "PASSWORD_RECOVERY") { show("f-reset"); msg(""); } });
-  $("f-reset").addEventListener("submit", function (ev) { ev.preventDefault(); err("r-err", "");
-    sb.auth.updateUser({ password: $("r-pass").value }).then(function (r) { if (r.error) throw r.error; location.href = "conversas.html"; })
-      .catch(function (e) { err("r-err", pt(e)); }); });
-
-  PNS.getSession().then(function (s) { if (s && !location.hash.includes("type=recovery")) location.replace(next); });
+  var esc = PNS.esc, box = document.getElementById("avisos");
+  PNS.requireAuth().then(function () {
+    return PNS.sb.rpc("my_messages", { p_limit: 100 });
+  }).then(function (r) {
+    if (r.error) throw r.error;
+    var msgs = r.data || [];
+    if (!msgs.length) { box.innerHTML = '<p class="form-note">Você ainda não tem avisos. Quando houver novidade — um certificado emitido, uma conversa nova no ar — ela aparece aqui.</p>'; return; }
+    box.innerHTML = msgs.map(function (m) {
+      return '<div class="app-card aviso' + (m.lida ? '' : ' novo') + '">' +
+        '<p class="media-kind">' + (m.lida ? '' : 'Novo · ') + PNS.longDate(m.created_at) + '</p>' +
+        '<h3>' + esc(m.title) + '</h3><p>' + esc(m.body) + '</p>' +
+        (m.link_url ? '<p><a class="app-cta" href="' + esc(m.link_url) + '">' + esc(m.link_label || "Abrir") + ' →</a></p>' : '') +
+        '</div>';
+    }).join("");
+    var naoLidos = msgs.filter(function (m) { return !m.lida; });
+    if (naoLidos.length) PNS.sb.rpc("mark_messages_read").then(function () { if (PNS.refreshUnread) PNS.refreshUnread(); });
+  }).catch(function (e) { if (e.message !== "redirect") box.innerHTML = '<p class="cert-error">' + esc(e.message) + '</p>'; });
 })();
 </script>
 

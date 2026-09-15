@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<title>Criar conta — Psicologia no Sofá</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://psicologianosofa.com/entrar.html">
+<script>
+  (function () {
+    var p = new URLSearchParams(location.search), ref = p.get("ref") || "conta";
+    try { localStorage.setItem("pns-ref", ref); } catch (e) {}
+    var dest = "entrar.html?modo=criar&ref=" + encodeURIComponent(ref);
+    var cod = p.get("codigo");
+    if (cod) dest += "&next=" + encodeURIComponent("certificado.html?codigo=" + cod + "#ao-vivo");
+    location.replace(dest);
+  })();
+</script>
+<meta http-equiv="refresh" content="0; url=entrar.html?modo=criar">
+<link rel="stylesheet" href="assets/sofa.css?v=20260915a">
+</head>
+<body><main id="main"><section class="section"><div class="wrap">
+<p>Levando você para a criação da conta… <a href="entrar.html?modo=criar">Continuar</a>.</p>
+</div></section></main></body></html>

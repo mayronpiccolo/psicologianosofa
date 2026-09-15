@@ -25,14 +25,14 @@
 <meta name="twitter:title" content="Minha conta — Psicologia no Sofá"><meta name="twitter:description" content="Seus certificados e a sua conta."><meta name="twitter:image" content="https://psicologianosofa.com/assets/pns-og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;900&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/sofa.css?v=20260914f">
+<link rel="stylesheet" href="assets/sofa.css?v=20260915a">
 <script>
   (function () { try { var q = new URLSearchParams(location.search).get("lang"), s = localStorage.getItem("pns-lang");
     var l = (q === "en" || q === "pt") ? q : (s === "en" ? "en" : "pt"); document.documentElement.setAttribute("data-lang", l); document.documentElement.lang = l === "en" ? "en" : "pt-BR"; } catch (e) {} })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="assets/pns-config.js?v=20260914f"></script>
-<script src="assets/pns-app.js?v=20260914f"></script>
+<script src="assets/pns-config.js?v=20260915a"></script>
+<script src="assets/pns-app.js?v=20260915a"></script>
 
 </head>
 <body>
@@ -50,6 +50,40 @@
   </div>
 </header>
 <main id="main">
+
+  <section class="section" id="painel-avisos">
+    <div class="wrap">
+      <div class="sec-grid">
+        <div class="sec-label"><h2>Avisos</h2><p>Recados da equipe e o andamento dos seus pedidos de certificado. <a href="avisos.html">Ver todos</a>.</p></div>
+        <div id="painel-box"><p class="form-note">Carregando…</p></div>
+      </div>
+    </div>
+  </section>
+<script>
+(function () {
+  var esc = PNS.esc, box = document.getElementById("painel-box");
+  PNS.getSession().then(function (s) {
+    if (!s) return;
+    return Promise.all([ PNS.sb.rpc("my_messages", { p_limit: 5 }), PNS.sb.rpc("my_live_claims") ]);
+  }).then(function (r) {
+    if (!r) return;
+    var msgs = r[0].data || [], claims = (r[1].data || []).filter(function (c) { return c.status === "pendente"; });
+    var html = "";
+    claims.forEach(function (c) {
+      html += '<div class="app-card aviso pendente"><p class="media-kind">Pedido em análise</p>' +
+        '<h3>' + esc(c.lecture_title) + '</h3><p>Estamos conferindo a lista de presença desta conversa. O certificado aparece aqui em até 24 horas — você não precisa fazer mais nada.</p></div>';
+    });
+    var naoLidos = msgs.filter(function (m) { return !m.lida; });
+    (naoLidos.length ? naoLidos : msgs.slice(0, 2)).forEach(function (m) {
+      html += '<div class="app-card aviso' + (m.lida ? '' : ' novo') + '"><p class="media-kind">' + (m.lida ? PNS.shortDate(m.created_at) : "Novo · " + PNS.shortDate(m.created_at)) + '</p>' +
+        '<h3>' + esc(m.title) + '</h3><p>' + esc(m.body) + '</p>' +
+        (m.link_url ? '<p><a class="app-cta" href="' + esc(m.link_url) + '">' + esc(m.link_label || "Abrir") + ' →</a></p>' : '') + '</div>';
+    });
+    box.innerHTML = html || '<p class="form-note">Nenhum aviso por enquanto.</p>';
+    if (naoLidos.length) PNS.sb.rpc("mark_messages_read", { p_ids: naoLidos.map(function (m) { return m.id; }) });
+  }).catch(function () { box.innerHTML = '<p class="form-note">Não foi possível carregar os avisos.</p>'; });
+})();
+</script>
 
   <section class="section">
     <div class="wrap">

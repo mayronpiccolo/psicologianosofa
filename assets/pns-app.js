@@ -34,9 +34,11 @@
     function render(session) {
       if (session) {
         var email = session.user.email || "";
-        slot.innerHTML = '<a class="btn btn-primary btn-sm" href="minha-conta.html" title="' + esc(email) + '">Minha conta</a>' +
+        slot.innerHTML = '<a class="chip chip-avisos" href="avisos.html" title="Avisos">Avisos<span class="badge" id="pns-unread" hidden>0</span></a>' +
+          '<a class="btn btn-primary btn-sm" href="minha-conta.html" title="' + esc(email) + '">Minha conta</a>' +
           '<button type="button" class="chip" data-signout>Sair</button>';
         slot.querySelector("[data-signout]").addEventListener("click", signOut);
+        refreshUnread();
       } else {
         slot.innerHTML = '<a class="btn btn-primary btn-sm" href="entrar.html">Entrar</a>';
       }
@@ -46,6 +48,16 @@
   }
   document.addEventListener("DOMContentLoaded", mountAccount);
 
-  global.PNS = { sb: sb, longDate: longDate, shortDate: shortDate, fmtTime: fmtTime, esc: esc, qs: qs,
+  /* contador de avisos não lidos na navegação */
+  function refreshUnread() {
+    var el = document.getElementById("pns-unread"); if (!el) return Promise.resolve(0);
+    return sb.rpc("my_unread_count").then(function (r) {
+      var n = r && !r.error ? (r.data || 0) : 0;
+      el.textContent = n > 9 ? "9+" : String(n); el.hidden = !n;
+      return n;
+    }).catch(function () { return 0; });
+  }
+
+  global.PNS = { sb: sb, refreshUnread: refreshUnread, longDate: longDate, shortDate: shortDate, fmtTime: fmtTime, esc: esc, qs: qs,
                  getSession: getSession, getProfile: getProfile, requireAuth: requireAuth, signOut: signOut };
 })(window);

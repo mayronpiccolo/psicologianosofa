@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /minha-conta.html
+Disallow: /avisos.html
+Disallow: /admin-ao-vivo.html
+Disallow: /conta
+Disallow: /conta.html
 
 Sitemap: https://psicologianosofa.com/sitemap.xml
