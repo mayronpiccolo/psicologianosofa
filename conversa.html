@@ -102,7 +102,7 @@
     prog = p || prog; if (!prog) return;
     var pct = Math.min(100, Math.round(100 * prog.watched_seconds / lecture.duration_seconds));
     $("status").innerHTML = '<div class="app-progress big"><span style="width:' + pct + '%"></span></div>' +
-      '<p>' + (prog.completed_at ? '<b>Concluída</b> em ' + PNS.longDate(prog.completed_at) : '<b>' + pct + '%</b> assistido · certificado liberado a partir de 90%') + '</p>';
+      '<p>' + (prog.completed_at ? '<b>Concluída</b> em ' + PNS.longDate(prog.completed_at) : '<b>' + pct + '%</b> assistido · o certificado é liberado ao concluir a conversa') + '</p>';
     if (prog.completed_at) { $("certbox").hidden = false; }
   }
   function flush(force) {
@@ -114,10 +114,18 @@
       .catch(function () { saving = false; });
   }
   function hint(m) { var h = $("hint"); h.textContent = m; h.classList.add("flash"); setTimeout(function () { h.classList.remove("flash"); }, 900); }
+  /* Conta como assistido só quando a aba está visível E a janela está à frente.
+     document.hasFocus() continua true quando o foco está no iframe do player,
+     então clicar no vídeo não zera a contagem; trocar de app, sim. */
+  function atento() { return !document.hidden && document.hasFocus(); }
   function tick() {
     if (!ready) return;
     var t = player.getCurrentTime(), d = player.getDuration() || lecture.duration_seconds;
     if (t > maxAllowed + TOL) { player.seekTo(maxAllowed, true); hint("Não é possível avançar além do ponto já assistido."); t = maxAllowed; lastT = t; }
+    else if (!atento()) {
+      /* longe da tela: não credita tempo nem avança o ponto máximo */
+      lastT = t;
+    }
     else {
       if (playing && lastT !== null) { var dt = t - lastT; if (dt > 0 && dt < 1.5) accum += dt; }
       if (t > maxAllowed) { maxAllowed = t; dirty = true; }
@@ -153,7 +161,15 @@
     player.seekTo(target, true); lastT = target; tick();
   });
   $("shield").addEventListener("click", function () { $("play").click(); });
-  document.addEventListener("visibilitychange", function () { if (document.hidden && ready && playing) { player.pauseVideo(); hint("Pausado: o tempo só conta enquanto a aba está visível."); } });
+  function pausarSeLonge(msg) { if (ready && playing) { player.pauseVideo(); hint(msg); } }
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) pausarSeLonge("Pausado: a conversa só conta enquanto a aba está visível.");
+  });
+  /* Trocar de aplicativo ou de janela não dispara visibilitychange. O blur dispara —
+     mas também quando o foco entra no iframe do player, e aí hasFocus() continua true. */
+  window.addEventListener("blur", function () {
+    setTimeout(function () { if (!document.hasFocus()) pausarSeLonge("Pausado: a conversa só conta com esta janela à frente."); }, 0);
+  });
   window.addEventListener("pagehide", function () { flush(true); });
 
   $("f-cert").addEventListener("submit", function (ev) {
@@ -186,7 +202,7 @@
     $("k-season").textContent = lecture.tema || "Conversa"; $("k-meta").textContent = PNS.longDate(lecture.lecture_date) + " · " + PNS.fmtTime(lecture.duration_seconds) + " · " + lecture.activity_text;
     $("t-title").textContent = lecture.title; $("t-speaker").textContent = lecture.speaker; $("t-desc").textContent = lecture.description || "";
     if (r[2] && r[2].full_name) $("c-name").value = r[2].full_name;
-    if (prog) setStatus(prog); else $("status").innerHTML = '<div class="app-progress big"><span style="width:0"></span></div><p><b>0%</b> assistido · certificado liberado a partir de 90%</p>';
+    if (prog) setStatus(prog); else $("status").innerHTML = '<div class="app-progress big"><span style="width:0"></span></div><p><b>0%</b> assistido · o certificado é liberado ao concluir a conversa</p>';
     var s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(s);
   }).catch(function (e) { if (e.message !== "redirect") { $("t-title").textContent = e.message; $("pwrap").hidden = true; } });
 })();
