@@ -436,7 +436,7 @@ button { font-family: inherit; }
 .team { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 22px; margin-top: 28px; }
 .member { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px; text-align: center; }
 .member .avatar { width: 96px; height: 96px; border-radius: 50%; margin: 0 auto 14px; background: var(--mint); display: grid; place-items: center; overflow: hidden; color: var(--petrol); font-weight: 600; font-size: 1.4rem; letter-spacing: .04em; }
-.member .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: scale(1.5); transform-origin: 50% 26%; }
+.member .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: scale(var(--av-zoom, 1.5)); transform-origin: var(--av-x, 50%) var(--av-y, 26%); }
 .member h3 { font-size: 1.05rem; margin: 0 0 4px; }
 .member .role { font-size: .82rem; color: var(--coral); font-weight: 600; margin: 0 0 8px; }
 .member .bio { font-size: .88rem; color: var(--muted); margin: 0; }
@@ -445,7 +445,13 @@ button { font-family: inherit; }
 .strip-founders .strip-card { flex: 0 0 min(78%, 260px); }
 .founder-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 26px 18px 22px; }
 .founder-card .avatar { width: 110px; height: 110px; border-radius: 50%; background: var(--mint); display: grid; place-items: center; overflow: hidden; color: var(--petrol); font-weight: 600; font-size: 1.5rem; letter-spacing: .04em; margin-bottom: 14px; border: 3px solid var(--sand); }
-.founder-card .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: scale(1.5); transform-origin: 50% 26%; }
+.founder-card .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: scale(var(--av-zoom, 1.5)); transform-origin: var(--av-x, 50%) var(--av-y, 26%); }
+
+/* Enquadramento por foto: cada retrato tem o rosto num lugar diferente, então
+   o zoom e o ponto de origem são medidos um a um. Assim todas as cabeças saem
+   do mesmo tamanho e na mesma altura dentro do círculo. Foto nova = uma linha. */
+.avatar img[src*="portrait"]        { --av-zoom: 1.50; --av-x: 51%; --av-y: 16%; }
+.avatar img[src*="ludmila-zatorre"] { --av-zoom: 1.45; --av-x: 48%; --av-y: 16%; }
 .founder-card .cap { padding: 0; gap: 4px; justify-items: center; }
 .founder-card .cap b { font-size: .98rem; }
 .founder-card .cap .role { color: var(--coral); font-weight: 600; font-size: .78rem; }
@@ -488,3 +494,8 @@ button { font-family: inherit; }
 
 /* Âncoras (#ao-vivo, #verificar…) não podem parar debaixo da navegação fixa. */
 section[id], .cert-tabs, .cert-panel, [id]:target { scroll-margin-top: 96px; }
+
+/* Capa de conversa: os retratos em assets/speakers são quadrados com moldura
+   redonda desenhada na própria imagem. Recortados a 16/9 perdiam o topo da
+   moldura, então aqui a imagem inteira aparece sobre o fundo menta. */
+.thumb img[src*="speakers/"], .programme .thumb img[src*="speakers/"] { object-fit: contain; background: var(--mint); }

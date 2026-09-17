@@ -1,0 +1,21 @@
+Subir no GitHub (repositório mayronpiccolo/psicologianosofa)
+============================================================
+
+Mantenha a estrutura: assets/ e conta/ são subpastas.
+Todos os .html mudaram porque a versão dos arquivos de apoio subiu de
+20260915a para 20260917a — é isso que faz o navegador buscar o CSS e o JS
+novos em vez de usar os que já estão no cache. Suba os .html junto com
+assets/, nunca só um dos dois.
+
+O que mudou de verdade:
+  assets/sofa.css     enquadramento das fotos nos círculos da equipe;
+                      capas de conversa aparecem inteiras, sem recorte
+  assets/pns-app.js   capa da conversa: retrato nosso quando existe,
+                      capa da casa com as iniciais quando o YouTube
+                      não tem miniatura
+  index.html          capas das conversas na home
+  conversas.html      capas na lista do portal
+  conta/index.html    cobre psicologianosofa.com/conta/ com barra no fim
+  restantes           só a versão dos arquivos de apoio
+
+Depois de subir, confira com a página recarregada à força (Cmd+Shift+R).

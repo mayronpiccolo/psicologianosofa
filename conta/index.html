@@ -8,15 +8,15 @@
   (function () {
     var p = new URLSearchParams(location.search), ref = p.get("ref") || "conta";
     try { localStorage.setItem("pns-ref", ref); } catch (e) {}
-    var dest = "entrar.html?modo=criar&ref=" + encodeURIComponent(ref);
+    var dest = "../entrar.html?modo=criar&ref=" + encodeURIComponent(ref);
     var cod = p.get("codigo");
-    if (cod) dest += "&next=" + encodeURIComponent("certificado.html?codigo=" + cod + "#ao-vivo");
+    if (cod) dest += "&next=" + encodeURIComponent("../certificado.html?codigo=" + cod + "#ao-vivo");
     location.replace(dest);
   })();
 </script>
-<meta http-equiv="refresh" content="0; url=entrar.html?modo=criar">
-<link rel="stylesheet" href="assets/sofa.css?v=20260917a">
+<meta http-equiv="refresh" content="0; url=../entrar.html?modo=criar">
+<link rel="stylesheet" href="../assets/sofa.css?v=20260917a">
 </head>
 <body><main id="main"><section class="section"><div class="wrap">
-<p>Levando você para a criação da conta… <a href="entrar.html?modo=criar">Continuar</a>.</p>
+<p>Levando você para a criação da conta… <a href="../entrar.html?modo=criar">Continuar</a>.</p>
 </div></section></main></body></html>

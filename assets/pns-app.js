@@ -58,6 +58,42 @@
     }).catch(function () { return 0; });
   }
 
+  // ---- capa da conversa -------------------------------------------------
+  // Boa parte das conversas de 2020 está como "não listada" no YouTube, e para
+  // essas o i.ytimg.com devolve um cinza de 120px com o ícone de vídeo — foi o
+  // que aparecia na lista. Então: capa nossa quando existe; senão a do YouTube,
+  // trocada por uma capa da casa se voltar no tamanho do placeholder.
+  var CAPAS = [["dunker","dunker"], ["baum","baum"], ["higbee","higbee"], ["gusso","gusso"],
+               ["ravanello","ravanello"], ["alcyr","alcyr"]];
+  function capaLocal(l) {
+    var quem = String((l && (l.speaker || l.speaker_short)) || "").toLowerCase();
+    for (var i = 0; i < CAPAS.length; i++) if (quem.indexOf(CAPAS[i][0]) >= 0) return "assets/speakers/" + CAPAS[i][1] + ".png";
+    return null;
+  }
+  function iniciais(nome) {
+    var p = String(nome || "").replace(/\b(dr|dra|prof|profa)\.?\s+/gi, "").trim().split(/\s+/);
+    return ((p[0] || "").charAt(0) + (p.length > 1 ? (p[p.length - 1] || "").charAt(0) : "")).toUpperCase() || "PS";
+  }
+  function capaPropria(nome) {
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180">' +
+      '<rect width="320" height="180" fill="#DCE8E3"/>' +
+      '<text x="160" y="104" text-anchor="middle" font-family="Poppins,Avenir Next,Helvetica,Arial,sans-serif" ' +
+      'font-size="58" font-weight="600" fill="#2C4A54">' + iniciais(nome) + '</text></svg>';
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(s);
+  }
+  // Os handlers vão inteiros no atributo, sem depender de PNS: a imagem pode
+  // carregar antes deste script, e aí uma chamada a PNS.algo não aconteceria.
+  var TROCA_OK = "var c=this.dataset.capa;if(c&amp;&amp;this.naturalWidth&lt;=120){this.removeAttribute('data-capa');this.src=c}";
+  var TROCA_ERRO = "var c=this.dataset.capa;if(c){this.removeAttribute('data-capa');this.src=c}";
+  function capaImg(l) {
+    var local = capaLocal(l), nome = (l && (l.speaker || l.speaker_short)) || "";
+    if (local) return '<img src="' + esc(local) + '" alt="" loading="lazy" width="320" height="180">';
+    return '<img src="https://i.ytimg.com/vi/' + esc(l.youtube_id) + '/mqdefault.jpg" alt="" loading="lazy" ' +
+           'width="320" height="180" data-capa="' + esc(capaPropria(nome)) + '" ' +
+           'onload="' + TROCA_OK + '" onerror="' + TROCA_ERRO + '">';
+  }
+
   global.PNS = { sb: sb, refreshUnread: refreshUnread, longDate: longDate, shortDate: shortDate, fmtTime: fmtTime, esc: esc, qs: qs,
-                 getSession: getSession, getProfile: getProfile, requireAuth: requireAuth, signOut: signOut };
+                 getSession: getSession, getProfile: getProfile, requireAuth: requireAuth, signOut: signOut,
+                 capaImg: capaImg };
 })(window);
