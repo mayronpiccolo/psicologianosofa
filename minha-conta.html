@@ -117,6 +117,7 @@
   </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
 <script src="assets/certificado-pdf.js?v=20260912b"></script>
+<script src="assets/pns-pesquisa.js?v=20261004a"></script>
 <script>
 (function () {
   var sb = PNS.sb, esc = PNS.esc, $ = function (i) { return document.getElementById(i); }, signers = {};
@@ -135,8 +136,11 @@
     $("list").addEventListener("click", function (ev) {
       var b = ev.target.closest("[data-i]"); if (!b) return; var c = list[+b.dataset.i], who = signers[c.signer_key] || { name: "Psicologia no Sofá", cred: [] };
       b.disabled = true; b.textContent = "Gerando…";
-      PNSCert.generate({ name: c.holder_name, title: c.lecture_title, speaker: c.speaker, dateText: PNS.longDate(c.lecture_date), year: String(c.issued_at).slice(0, 4),
-        issuedText: PNS.longDate(c.issued_at), certId: c.id, signerName: who.name, signerDegrees: who.degrees, signerCred: who.cred || [], mode: c.kind === "async" ? "async" : "live", durationText: c.activity_text })
+      // A pesquisa aparece antes do download e sempre pode ser pulada:
+      // gate() resolve nos dois caminhos, então o certificado nunca fica preso.
+      (window.PNSPesquisa ? PNSPesquisa.gate() : Promise.resolve())
+      .then(function () { return PNSCert.generate({ name: c.holder_name, title: c.lecture_title, speaker: c.speaker, dateText: PNS.longDate(c.lecture_date), year: String(c.issued_at).slice(0, 4),
+        issuedText: PNS.longDate(c.issued_at), certId: c.id, signerName: who.name, signerDegrees: who.degrees, signerCred: who.cred || [], mode: c.kind === "async" ? "async" : "live", durationText: c.activity_text }); })
       .then(function (pdf) { var safe = c.holder_name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z ]/g, "").trim().replace(/ +/g, "-"); pdf.save("Certificado-Psicologia-no-Sofa-" + safe + ".pdf"); })
       .finally(function () { b.disabled = false; b.textContent = "Baixar PDF →"; });
     });
