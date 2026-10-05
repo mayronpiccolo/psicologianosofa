@@ -63,6 +63,9 @@
   // essas o i.ytimg.com devolve um cinza de 120px com o ícone de vídeo — foi o
   // que aparecia na lista. Então: capa nossa quando existe; senão a do YouTube,
   // trocada por uma capa da casa se voltar no tamanho do placeholder.
+  // Out/2026: o mqdefault passou a devolver o placeholder de forma intermitente
+  // até para vídeos com capa; agora tenta o maxresdefault (16:9, capa real),
+  // depois o mqdefault, e só então a capa da casa.
   var CAPAS = [["dunker","dunker"], ["baum","baum"], ["higbee","higbee"], ["gusso","gusso"],
                ["ravanello","ravanello"], ["alcyr","alcyr"]];
   function capaLocal(l) {
@@ -83,12 +86,13 @@
   }
   // Os handlers vão inteiros no atributo, sem depender de PNS: a imagem pode
   // carregar antes deste script, e aí uma chamada a PNS.algo não aconteceria.
-  var TROCA_OK = "var c=this.dataset.capa;if(c&amp;&amp;this.naturalWidth&lt;=120){this.removeAttribute('data-capa');this.src=c}";
-  var TROCA_ERRO = "var c=this.dataset.capa;if(c){this.removeAttribute('data-capa');this.src=c}";
+  var TROCA_OK = "if(this.naturalWidth&lt;=120){var m=this.dataset.mq,c=this.dataset.capa;if(m){this.removeAttribute('data-mq');this.src=m}else if(c){this.removeAttribute('data-capa');this.src=c}}";
+  var TROCA_ERRO = "var m=this.dataset.mq,c=this.dataset.capa;if(m){this.removeAttribute('data-mq');this.src=m}else if(c){this.removeAttribute('data-capa');this.src=c}";
   function capaImg(l) {
     var local = capaLocal(l), nome = (l && (l.speaker || l.speaker_short)) || "";
     if (local) return '<img src="' + esc(local) + '" alt="" loading="lazy" width="320" height="180">';
-    return '<img src="https://i.ytimg.com/vi/' + esc(l.youtube_id) + '/mqdefault.jpg" alt="" loading="lazy" ' +
+    var yt = "https://i.ytimg.com/vi/" + esc(l.youtube_id);
+    return '<img src="' + yt + '/maxresdefault.jpg" data-mq="' + yt + '/mqdefault.jpg" alt="" loading="lazy" ' +
            'width="320" height="180" data-capa="' + esc(capaPropria(nome)) + '" ' +
            'onload="' + TROCA_OK + '" onerror="' + TROCA_ERRO + '">';
   }
