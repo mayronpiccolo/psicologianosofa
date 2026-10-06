@@ -116,12 +116,14 @@ window.PNS_LIVE = {
   function show(which) { ["live-wait", "live-player", "live-done"].forEach(function (id) { var el = $(id); if (el) el.hidden = id !== which; }); }
   function tick() {
     var now = new Date(), starts = new Date(C.startsAt), ends = new Date(C.endsAt), diff = starts - now;
-    if (now > ends) {
+    // ?teste na URL mostra o que estiver ao vivo no canal agora (ensaio), sem esperar o horário
+    var teste = /[?&]teste(=|&|$)/.test(location.search);
+    if (now > ends && !teste) {
       if (C.recordingUrl) { var r = $("live-rec"); if (r) r.href = C.recordingUrl; }
       show("live-done"); return;
     }
     var src = C.videoId ? "https://www.youtube.com/embed/" + encodeURIComponent(C.videoId) + "?autoplay=1&rel=0&modestbranding=1"
-            : (C.channelId && now >= new Date(starts.getTime() - 9e5) ? "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(C.channelId) + "&autoplay=1" : "");
+            : (C.channelId && (teste || now >= new Date(starts.getTime() - 9e5)) ? "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(C.channelId) + "&autoplay=1" : "");
     if (src) {
       var f = $("live-iframe");
       if (f && f.src !== src) f.src = src;
